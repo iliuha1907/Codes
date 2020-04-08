@@ -9,20 +9,6 @@ public class JDBCConnector {
     static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
     static String connect = "jdbc:derby:C:\\Apache\\db-derby-10.12.1.1-bin\\bin\\DigitalShop";
 
-    public static void main(String[] args) {
-
-        // Текущий каталог для Derby
-    //    System.getProperties().setProperty("derby.system.home", "C:\\Apache\\db-derby-10.12.1.1-bin");
-        System.setProperty("derby.system.home", "C:\\Apache\\db-derby-10.12.1.1-bin");
-
-      new JDBCConnector().displayDevices();
-      new JDBCConnector().displayOrders();
-      new JDBCConnector().displayCouriers();
-      new JDBCConnector().displayOrdersForCour(1);
-      new JDBCConnector().displayDevsForManu("Samsung");
-
-    }
-
     public JDBCConnector(){
         System.setProperty("derby.system.home", "C:\\Apache\\db-derby-10.12.1.1-bin");
     }
@@ -43,7 +29,6 @@ public class JDBCConnector {
                 String name = rec.getString("name");
                 name=name.replaceAll(" ","_");
                 String manu=rec.getString("manufacturer");
-               // System.out.println( "Id:"+id+" Name: " + name+", Manufacturer: "+manu);
                 strings.add(id+" " + name+" "+manu);
             }
             rec.close();
@@ -72,10 +57,7 @@ public class JDBCConnector {
                 int code=rec.getInt("code");
                 String courName=rec.getString("Courier");
                 String dev = rec.getString("Device");
-               /* System.out.println( "Code:"+code+", Device:" +dev+", Name of courier:" +
-                        courName);
-                System.out.println("************************");*/
-               dev=dev.replaceAll(" ","_");
+                dev=dev.replaceAll(" ","_");
                 result.add(code+" " +dev+" " +
                         courName);
             }
@@ -101,9 +83,6 @@ public class JDBCConnector {
             while (rec.next()) {
                 int id=rec.getInt("id");
                 String courName=rec.getString("name");
-                /*System.out.println( "Id:"+id+" Name of courier:" +
-                        courName);
-                System.out.println("************************");*/
                 result.add(id+" " +
                         courName);
             }
@@ -117,13 +96,11 @@ public class JDBCConnector {
 
     public List<String> displayOrdersForCour(int id){
         List<String> result=new ArrayList<>();
-        System.out.println("Parametrized:");
         try {
             // Регистрируем драйвер JDBC
             Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
             // Подключаемся к БД
             Connection conn = DriverManager.getConnection(connect);
-            // Выполняем запрос
             PreparedStatement st = conn.prepareStatement(" select orders.code, " +
                     "devices.name as Device, couriers.name as Courier" +
                     " from orders, couriers, devices where orders.idDevice=devices.id and orders.idCourier = ? and " +
@@ -134,15 +111,11 @@ public class JDBCConnector {
                 int code=rec.getInt("code");
                 String courName=rec.getString("Courier");
                 String dev = rec.getString("Device");
-              /*  System.out.println( "Code:"+code+", Device:" +dev+", Name of courier:" +
-                        courName);
-                System.out.println("************************");*/
                 result.add("Code:"+code+", Device:" +dev+", Name of courier:" +
                         courName);
                 result.add("************************");
             }
             rec.close();
-            // Просматриваем и печатаем записи результирующей таблицы
             st.close();
         } catch (Exception e) {
             System.err.println("Run-time error: " + e );
@@ -152,7 +125,6 @@ public class JDBCConnector {
 
     public List<String> displayDevsForManu(String name){
         List<String> result=new ArrayList<>();
-        System.out.println("Parametrized:");
         try {
             // Регистрируем драйвер JDBC
             Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
@@ -166,11 +138,9 @@ public class JDBCConnector {
                 int id=rec.getInt("id");
                 String nameDev = rec.getString("name");
                 String manu=rec.getString("manufacturer");
-                System.out.println( "Id:"+id+" Name: " + nameDev+", Manufacturer: "+manu);
                 result.add("Id:"+id+" Name: " + nameDev+", Manufacturer: "+manu);
             }
             rec.close();
-            // Просматриваем и печатаем записи результирующей таблицы
             st.close();
         } catch (Exception e) {
             System.err.println("Run-time error: " + e );
@@ -182,13 +152,10 @@ public class JDBCConnector {
         try {
             // Регистрируем драйвер JDBC
             Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
-            // Подключаемся к БД
             Connection conn = DriverManager.getConnection(connect);
-            // Выполняем запрос
             PreparedStatement st = conn.prepareStatement("delete from orders where code=?");
             st.setInt(1,code);
             st.execute();
-            // Просматриваем и печатаем записи результирующей таблицы
             st.close();
         } catch (Exception e) {
             System.err.println("Run-time error: " + e );
@@ -199,7 +166,6 @@ public class JDBCConnector {
         try {
             // Регистрируем драйвер JDBC
             Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
-            // Подключаемся к БД
             Connection conn = DriverManager.getConnection(connect);
             String query;
             PreparedStatement st;
@@ -227,16 +193,10 @@ public class JDBCConnector {
                     break;
                     default: return;
             }
-            // Выполняем запрос
-
             st.execute();
-            // Просматриваем и печатаем записи результирующей таблицы
             st.close();
         } catch (Exception e) {
             System.err.println("Run-time error: " + e );
         }
     }
 }
-
-
-
