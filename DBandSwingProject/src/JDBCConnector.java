@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCConnector {
-    static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-    static String connect = "jdbc:derby:C:\\Apache\\db-derby-10.12.1.1-bin\\bin\\DigitalShop";
+    private String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+    private String connect = "jdbc:derby:C:\\Apache\\db-derby-10.12.1.1-bin\\bin\\DigitalShop";
 
     public JDBCConnector(){
         System.setProperty("derby.system.home", "C:\\Apache\\db-derby-10.12.1.1-bin");
@@ -17,7 +17,7 @@ public class JDBCConnector {
         List<String> strings=new ArrayList<>();
         try {
             // Регистрируем драйвер JDBC
-            Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
+            Class.forName( driver );
             // Подключаемся к БД
             Connection conn = DriverManager.getConnection(connect);
             // Выполняем запрос
@@ -43,7 +43,7 @@ public class JDBCConnector {
         List<String> result=new ArrayList<>();
         try {
             // Регистрируем драйвер JDBC
-            Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
+            Class.forName( driver );
             // Подключаемся к БД
             Connection conn = DriverManager.getConnection(connect);
             // Выполняем запрос
@@ -73,7 +73,7 @@ public class JDBCConnector {
         List<String> result=new ArrayList<>();
         try {
             // Регистрируем драйвер JDBC
-            Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
+            Class.forName( driver );
             // Подключаемся к БД
             Connection conn = DriverManager.getConnection(connect);
             // Выполняем запрос
@@ -98,9 +98,10 @@ public class JDBCConnector {
         List<String> result=new ArrayList<>();
         try {
             // Регистрируем драйвер JDBC
-            Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
+            Class.forName( driver );
             // Подключаемся к БД
             Connection conn = DriverManager.getConnection(connect);
+            // Выполняем запрос
             PreparedStatement st = conn.prepareStatement(" select orders.code, " +
                     "devices.name as Device, couriers.name as Courier" +
                     " from orders, couriers, devices where orders.idDevice=devices.id and orders.idCourier = ? and " +
@@ -127,7 +128,7 @@ public class JDBCConnector {
         List<String> result=new ArrayList<>();
         try {
             // Регистрируем драйвер JDBC
-            Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
+            Class.forName( driver );
             // Подключаемся к БД
             Connection conn = DriverManager.getConnection(connect);
             // Выполняем запрос
@@ -138,6 +139,7 @@ public class JDBCConnector {
                 int id=rec.getInt("id");
                 String nameDev = rec.getString("name");
                 String manu=rec.getString("manufacturer");
+                System.out.println( "Id:"+id+" Name: " + nameDev+", Manufacturer: "+manu);
                 result.add("Id:"+id+" Name: " + nameDev+", Manufacturer: "+manu);
             }
             rec.close();
@@ -151,7 +153,7 @@ public class JDBCConnector {
     public void delOrder(int code){
         try {
             // Регистрируем драйвер JDBC
-            Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
+            Class.forName( driver );
             Connection conn = DriverManager.getConnection(connect);
             PreparedStatement st = conn.prepareStatement("delete from orders where code=?");
             st.setInt(1,code);
@@ -165,7 +167,7 @@ public class JDBCConnector {
     public void insert(String value, int what){
         try {
             // Регистрируем драйвер JDBC
-            Class.forName( "org.apache.derby.jdbc.EmbeddedDriver" );
+            Class.forName( driver );
             Connection conn = DriverManager.getConnection(connect);
             String query;
             PreparedStatement st;
@@ -191,7 +193,7 @@ public class JDBCConnector {
                     st.setInt(2,Integer.parseInt(mas[1]));
                     st.setInt(3,Integer.parseInt(mas[2]));
                     break;
-                    default: return;
+                default: return;
             }
             st.execute();
             st.close();
