@@ -1,0 +1,14 @@
+﻿  stdafx.cpp
+  dllmain.cpp
+  DllShowProc.c
+c:\users\hp\source\repos\dllshowproc\dllshowproc\dllshowproc.c(12): warning C4273: GetAuthor: несовместимая компоновка dll
+  c:\users\hp\source\repos\dllshowproc\dllshowproc\dllshowproc.h(11): note: см. предыдущее определение "GetAuthor"
+c:\users\hp\source\repos\dllshowproc\dllshowproc\dllshowproc.c(29): warning C4273: GetDescription: несовместимая компоновка dll
+  c:\users\hp\source\repos\dllshowproc\dllshowproc\dllshowproc.h(13): note: см. предыдущее определение "GetDescription"
+c:\users\hp\source\repos\dllshowproc\dllshowproc\dllshowproc.c(44): warning C4273: Execute: несовместимая компоновка dll
+  c:\users\hp\source\repos\dllshowproc\dllshowproc\dllshowproc.h(15): note: см. предыдущее определение "Execute"
+     Создается библиотека C:\Users\HP\source\repos\DllShowProc\Release\DllShowProc.lib и объект C:\Users\HP\source\repos\DllShowProc\Release\DllShowProc.exp
+  Создание кода
+  All 4 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  DllShowProc.vcxproj -> C:\Users\HP\source\repos\DllShowProc\Release\DllShowProc.dll

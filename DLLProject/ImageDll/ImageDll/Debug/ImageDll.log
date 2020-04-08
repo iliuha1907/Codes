@@ -1,0 +1,8 @@
+﻿  ImageDll.c
+c:\users\hp\source\repos\imagedll\imagedll\imagedll.c(15): warning C4273: GetAuthor: несовместимая компоновка dll
+  c:\users\hp\source\repos\imagedll\imagedll\imagedll.h(14): note: см. предыдущее определение "GetAuthor"
+c:\users\hp\source\repos\imagedll\imagedll\imagedll.c(31): warning C4273: GetDescription: несовместимая компоновка dll
+  c:\users\hp\source\repos\imagedll\imagedll\imagedll.h(16): note: см. предыдущее определение "GetDescription"
+c:\users\hp\source\repos\imagedll\imagedll\imagedll.c(47): warning C4273: Execute: несовместимая компоновка dll
+  c:\users\hp\source\repos\imagedll\imagedll\imagedll.h(18): note: см. предыдущее определение "Execute"
+  ImageDll.vcxproj -> C:\Users\HP\source\repos\ImageDll\Debug\ImageDll.dll

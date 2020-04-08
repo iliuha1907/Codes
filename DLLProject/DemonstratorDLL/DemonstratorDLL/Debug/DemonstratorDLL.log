@@ -1,0 +1,8 @@
+﻿  Demonstrator.c
+c:\users\hp\source\repos\demonstratordll\demonstratordll\demonstrator.c(50): warning C4028: формальный параметр 3 отличается от объявления
+c:\users\hp\source\repos\demonstratordll\demonstratordll\demonstrator.c(64): warning C4133: функция: несовместимые типы - из "unsigned short [13]" в "LPCSTR"
+c:\users\hp\source\repos\demonstratordll\demonstratordll\demonstrator.c(66): warning C4047: функция: "UINT" отличается по уровням косвенного обращения от "void *"
+c:\users\hp\source\repos\demonstratordll\demonstratordll\demonstrator.c(66): warning C4024: GetMessageA: различные типы для формального и фактического параметров 3
+c:\users\hp\source\repos\demonstratordll\demonstratordll\demonstrator.c(66): warning C4024: GetMessageA: различные типы для формального и фактического параметров 4
+c:\users\hp\source\repos\demonstratordll\demonstratordll\demonstrator.c(141): warning C4715: funcWinProc: значение возвращается не при всех путях выполнения
+  DemonstratorDLL.vcxproj -> C:\Users\HP\source\repos\DemonstratorDLL\Debug\DemonstratorDLL.exe
