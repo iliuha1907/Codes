@@ -10,7 +10,7 @@ public class ReadAndCiphr {
     private Replacement replacement;
     private Affine affine;
     private Vigener vigener;
-    private List<String> data=new ArrayList<>();
+    private String data="";
 
     public ReadAndCiphr(String aInputFile, String aOutputFile, String aKeyFile){
         inputFile=aInputFile;
@@ -48,7 +48,7 @@ public class ReadAndCiphr {
             try {
                 while (input.hasNextLine()) {
                     String buf = input.nextLine();
-                    data.add(buf);
+                    data+=(buf.toLowerCase());
                 }
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
@@ -64,10 +64,7 @@ public class ReadAndCiphr {
         try {
             BufferedWriter bw=new BufferedWriter(new FileWriter(new File(outputFile)));
             try {
-                for(String s:data){
-                    bw.write(s);
-                }
-
+                bw.write(data);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             } finally {
@@ -83,9 +80,7 @@ public class ReadAndCiphr {
             Scanner input = new Scanner(new File(outputFile));
             BufferedWriter bw=new BufferedWriter(new FileWriter(new File("decrypt.txt")));
             try {
-                for(String s:data){
-                    bw.write(s);
-                }
+                bw.write(data);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             } finally {
@@ -97,48 +92,37 @@ public class ReadAndCiphr {
         }
     }
 
-   public void proceedEncrRepl(){
-      read();
-      for(int i=0;i<data.size();i++){
-          data.set(i,replacement.Ex(data.get(i)));
-      }
-      writeEncr();
-   }
+    public void proceedEncrRepl(){
+        read();
+        data=replacement.Ex(data);
+        writeEncr();
+    }
 
     public void proceedDecrRepl(){
-        for(int i=0;i<data.size();i++){
-            data.set(i,replacement.Dx(data.get(i)));
-        }
-      writeDecr();
+        data=replacement.Dx(data);
+        writeDecr();
     }
 
     public void proceedEncrAff(){
         read();
-        for(int i=0;i<data.size();i++){
-            data.set(i,affine.Ex(data.get(i)));
-        }
+        data=affine.Ex(data);
         writeEncr();
     }
 
     public void proceedDecrAff(){
-        for(int i=0;i<data.size();i++){
-                data.set(i,affine.Dx(data.get(i)));
-            }
+        data=affine.Dx(data);
         writeDecr();
     }
 
     public void proceedEncrVig(){
         read();
-        for(int i=0;i<data.size();i++){
-            data.set(i,vigener.Ex(data.get(i)));
-        }
+        data=vigener.Ex(data);
         writeEncr();
     }
 
     public void proceedDecrVig(){
-        for(int i=0;i<data.size();i++){
-                data.set(i,vigener.Dx(data.get(i)));
-            }
+        data=vigener.Dx(data);
         writeDecr();
     }
 }
+
