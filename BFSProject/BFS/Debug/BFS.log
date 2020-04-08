@@ -1,0 +1,3 @@
+﻿  BFS.cpp
+c:\users\hp\source\repos\bfs\bfs\bfs.cpp(17): warning C4018: <: несоответствие типов со знаком и без знака
+  BFS.vcxproj -> C:\Users\HP\source\repos\BFS\Debug\BFS.exe
